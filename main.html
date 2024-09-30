@@ -1,32 +1,42 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
-	<link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
+<body>  
+    <script>
+        function secondHighest(arr) {
+            if (arr.length < 2) {
+                return -Infinity;
+            }
 
-<body>	
-	<script>
-		function secondHighest(arr) {
-			//Write your code here
-			
-		}
+            // Use a Set to keep track of unique values
+            const uniqueValues = new Set(arr);
 
-		function Main() {
-			var n = prompt("Enter the number of elements");
-			var arr = [];
-			for (var i = 0; i < n; i++) {
-				arr[i] = prompt("Enter element " + (i+1));
-			}
-			alert(secondHighest(arr));
-		}
-		Main();
-	</script>
+            // If there is less than 2 unique values, return -Infinity
+            if (uniqueValues.size < 2) {
+                return -Infinity;
+            }
 
-    <script type="text/javascript" src="./script.js">
-</script>
+            // Convert the Set to an array and sort it
+            const sortedUniqueValues = Array.from(uniqueValues).sort((a, b) => a - b);
 
+            // The second highest value will be the second last element in the sorted array
+            return sortedUniqueValues[sortedUniqueValues.length - 2];
+        }
+
+        function Main() {
+            var n = parseInt(prompt("Enter the number of elements"));
+            var arr = [];
+            for (var i = 0; i < n; i++) {
+                arr[i] = parseInt(prompt("Enter element " + (i + 1)));
+            }
+            alert(secondHighest(arr));
+        }
+
+        Main();
+    </script>
+
+    <script type="text/javascript" src="./script.js"></script>
 </body>
-
 </html>
